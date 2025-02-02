@@ -11,7 +11,8 @@
   --color-accent: #efebe0;
   --color-danger: #f3c4cd;
   --color-success: #d4fada;
-  --shadow-full: 5px 5px
+  --shadow-full: 5px 5px;
+  --shadow-2: 2px 2px;
 }
 
 @layer base {
