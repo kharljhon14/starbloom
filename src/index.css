@@ -3,4 +3,9 @@
 
 @theme {
   --font-mulish: 'Mulish', serif;
+  --color-black: #232227;
+  --color-primary: #fde3c7;
+  --color-secondary: #c9bffe;
+  --color-danger: #f3c4cd;
+  --color-success: #d4fada;
 }

@@ -1,9 +1,5 @@
 function App() {
-  return (
-    <div>
-      <h1 className="text-lg font-mulish">Starbloom</h1>
-    </div>
-  );
+  return <div className=" max-w-md mx-auto"></div>;
 }
 
 export default App;
