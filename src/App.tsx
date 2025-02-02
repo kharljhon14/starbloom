@@ -1,5 +1,11 @@
+import Header from './components/header';
+
 function App() {
-  return <div className=" max-w-md mx-auto"></div>;
+  return (
+    <div className="">
+      <Header />
+    </div>
+  );
 }
 
 export default App;

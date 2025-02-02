@@ -5,7 +5,7 @@ import { cn } from '../utils/utils';
 const buttonVariants = cva(
   `
     inline-flex items-center justify-center gap-2 whitespace-nowrap relative rounded-md cursor-pointer 
-    border hover:translate-1 transition-all duration-300 ease-in-out
+    border active:translate-1 transition duration-100 ease-in-out
     `,
   {
     variants: {
@@ -27,24 +27,22 @@ const buttonVariants = cva(
   }
 );
 
-const secondaryColorVariants = cva(
-  `absolute  w-full h-full -bottom-1 -right-1 -z-10 rounded-md border`,
-  {
-    variants: {
-      secondaryColor: {
-        black: 'bg-black',
-        primary: 'bg-primary',
-        secondary: 'bg-secondary',
-        accent: 'bg-accent',
-        danger: 'bg-danger',
-        success: 'bg-success'
-      }
-    },
-    defaultVariants: {
-      secondaryColor: 'primary'
+const secondaryColorVariants = cva(`absolute  w-full h-full -bottom-1 -right-1 rounded-md border`, {
+  variants: {
+    secondaryColor: {
+      default: 'bg-white',
+      black: 'bg-black',
+      primary: 'bg-primary',
+      secondary: 'bg-secondary',
+      accent: 'bg-accent',
+      danger: 'bg-danger',
+      success: 'bg-success'
     }
+  },
+  defaultVariants: {
+    secondaryColor: 'default'
   }
-);
+});
 
 interface Props
   extends ButtonHTMLAttributes<HTMLButtonElement>,
@@ -62,13 +60,13 @@ export default function Button({
 }: Props) {
   return (
     <div className="relative w-fit">
+      <div className={cn(secondaryColorVariants({ secondaryColor }))}></div>
       <button
         className={cn(buttonVariants({ variant, size, className }))}
         {...props}
       >
         {children}
       </button>
-      <div className={cn(secondaryColorVariants({ secondaryColor }))}></div>
     </div>
   );
 }
