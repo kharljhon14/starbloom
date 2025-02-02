@@ -1,18 +1,14 @@
-import Avatar from './components/avatar';
-import Card from './components/card';
 import Header from './components/header';
+import PostCard from './features/posts/post-card';
 
 function App() {
   return (
     <div>
       <Header />
       <div className=" m-4 flex flex-col gap-4">
-        <Card>
-          <Avatar fallback="KC" />
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit, aliquid beatae
-          quisquam temporibus, nemo doloribus veniam porro libero, sint eius tenetur amet fuga animi
-          fugiat dignissimos voluptatibus ipsum nostrum omnis.
-        </Card>
+        <PostCard />
+        <PostCard />
+        <PostCard />
       </div>
     </div>
   );
