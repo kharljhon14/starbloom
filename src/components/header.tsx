@@ -2,8 +2,8 @@ import Button from './button';
 
 export default function Header() {
   return (
-    <header className="border-b flex h-h-20 items-center justify-between py-4 px-6 bg-primary">
-      <div>
+    <header className="border-b h-20 flex justify-between bg-primary">
+      <div className="flex items-center px-4">
         <a
           href="/"
           className="font-poppins text-xl"
@@ -11,8 +11,8 @@ export default function Header() {
           StarBloom
         </a>
       </div>
-      <div>
-        <Button>Sign in</Button>
+      <div className="bg-danger border-l flex items-center justify-center gap-3 px-4">
+        <Button size="lg">Log In</Button>
       </div>
     </header>
   );
