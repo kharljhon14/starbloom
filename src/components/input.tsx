@@ -15,7 +15,7 @@ export default function Input({ type, id, className, ...props }: Props) {
         <input
           id={id}
           className={cn(
-            `w-full border rounded-md p-3 focus:ring-black focus:border-black outline-none shadow-full shadow-black ${
+            `w-full border rounded-md p-3 focus:ring-black focus:border-black outline-none bg-white shadow-[5px_5px_0px_#232227] ${
               type === 'password' && 'pr-10'
             }`,
             className

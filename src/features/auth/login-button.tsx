@@ -20,15 +20,10 @@ export default function LoginButton() {
         open={isOpen}
         close={close}
       >
-        <Modal.Header>This is the header</Modal.Header>
+        <Modal.Header>Log in to StarBloom</Modal.Header>
         <Modal.Content>
           <LoginForm />
         </Modal.Content>
-        <Modal.Footer>
-          <div className="flex justify-end">
-            <Button onClick={close}>Close</Button>
-          </div>
-        </Modal.Footer>
       </Modal>
     </>
   );

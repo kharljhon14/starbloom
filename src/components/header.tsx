@@ -6,7 +6,7 @@ export default function Header() {
       <div className="flex items-center px-4">
         <a
           href="/"
-          className="font-poppins text-xl"
+          className="font-poppins text-xl uppercase font-semibold"
         >
           StarBloom
         </a>

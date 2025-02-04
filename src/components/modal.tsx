@@ -10,8 +10,8 @@ interface Props extends PropsWithChildren {
 
 function ModalHeader({ children }: PropsWithChildren) {
   return (
-    <div className="border-b pb-2 pt-4">
-      <h1 className=" text-lg">{children}</h1>
+    <div className="border-b-4 border-black pb-2 pt-4">
+      <h1 className="text-xl font-bold uppercase">{children}</h1>
     </div>
   );
 }
@@ -54,7 +54,7 @@ function Modal({ open, close, closeOnBackdrop = false, children }: Props) {
     >
       <div
         className={`
-            bg-white border pb-4 pt-6 px-3 rounded-md w-full max-h-[620px] 
+            bg-accent border pb-4 pt-6 px-3 rounded-md w-full max-h-[620px] 
         mx-4 shadow-black shadow-full overflow-y-auto relative transition-all duration-300
         ${open ? 'scale-100' : 'scale-0'}
         `}

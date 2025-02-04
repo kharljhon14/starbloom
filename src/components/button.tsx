@@ -65,7 +65,7 @@ export default function Button({
   ...props
 }: Props) {
   return (
-    <div className="relative w-fit">
+    <div className="relative">
       <div className={cn(secondaryColorVariants({ secondaryColor, showBackground: show }))}></div>
       <button
         className={cn(buttonVariants({ variant, size, className }))}
