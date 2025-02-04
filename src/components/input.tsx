@@ -1,12 +1,14 @@
-import { InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes, useState } from 'react';
 import Button from './button';
-import { Eye } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import { cn } from '../utils/utils';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface Props extends InputHTMLAttributes<HTMLInputElement> {}
 
 export default function Input({ type, id, className, ...props }: Props) {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div>
       <div className="relative w-full">
@@ -18,18 +20,19 @@ export default function Input({ type, id, className, ...props }: Props) {
             }`,
             className
           )}
-          type={type}
+          type={showPassword ? 'text' : type}
           {...props}
         />
         {type === 'password' && (
           <div className="absolute right-4 top-0 flex items-center justify-center h-full">
             <Button
+              onClick={() => setShowPassword(!showPassword)}
               type="button"
               showBackground={false}
               variant="secondary"
               className="w-6 h-6 p-0 inset-1"
             >
-              <Eye />
+              {showPassword ? <EyeOff /> : <Eye />}
             </Button>
           </div>
         )}

@@ -12,6 +12,15 @@ export default function LoginForm() {
           placeholder="Email"
         />
       </div>
+      <div>
+        <Label htmlFor="email">Password</Label>
+        <Input
+          id="password"
+          name="password"
+          placeholder="Password"
+          type="password"
+        />
+      </div>
     </form>
   );
 }
