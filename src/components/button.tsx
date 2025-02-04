@@ -37,10 +37,15 @@ const secondaryColorVariants = cva(`absolute  w-full h-full -bottom-1 -right-1 r
       accent: 'bg-accent',
       danger: 'bg-danger',
       success: 'bg-success'
+    },
+    showBackground: {
+      true: 'block',
+      false: 'hidden'
     }
   },
   defaultVariants: {
-    secondaryColor: 'default'
+    secondaryColor: 'default',
+    showBackground: true
   }
 });
 
@@ -54,13 +59,14 @@ export default function Button({
   variant,
   size,
   secondaryColor,
+  showBackground: show,
   children,
   className,
   ...props
 }: Props) {
   return (
     <div className="relative w-fit">
-      <div className={cn(secondaryColorVariants({ secondaryColor }))}></div>
+      <div className={cn(secondaryColorVariants({ secondaryColor, showBackground: show }))}></div>
       <button
         className={cn(buttonVariants({ variant, size, className }))}
         {...props}
