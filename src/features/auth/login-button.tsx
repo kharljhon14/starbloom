@@ -1,6 +1,7 @@
 import Button from '../../components/button';
 import Modal from '../../components/modal';
 import { useModal } from '../../hooks/usemodal';
+import LoginForm from './login-form';
 
 export default function LoginButton() {
   const { isOpen, open, close } = useModal();
@@ -21,10 +22,7 @@ export default function LoginButton() {
       >
         <Modal.Header>This is the header</Modal.Header>
         <Modal.Content>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus beatae totam corrupti
-            nobis laboriosam, perspiciatis cupiditate illum. Quo dolorum dignissimos quaerat,
-          </p>
+          <LoginForm />
         </Modal.Content>
         <Modal.Footer>
           <div className="flex justify-end">
