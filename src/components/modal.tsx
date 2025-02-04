@@ -1,10 +1,11 @@
 import { X } from 'lucide-react';
 import Button from './button';
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useEffect, useRef } from 'react';
 
 interface Props extends PropsWithChildren {
   open: boolean;
   close: () => void;
+  closeOnBackdrop?: boolean;
 }
 
 function ModalHeader({ children }: PropsWithChildren) {
@@ -23,9 +24,29 @@ function ModalFooter({ children }: PropsWithChildren) {
   return <div className="border-t pt-2">{children}</div>;
 }
 
-function Modal({ open, close, children }: Props) {
+function Modal({ open, close, closeOnBackdrop = false, children }: Props) {
+  const bdRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleBackdropClick = (evt: MouseEvent) => {
+      if (evt.target === bdRef.current && closeOnBackdrop) {
+        close();
+      }
+    };
+
+    const element = bdRef.current;
+    if (!element) return;
+
+    element.addEventListener('click', handleBackdropClick);
+
+    return () => {
+      element.removeEventListener('click', handleBackdropClick);
+    };
+  }, [closeOnBackdrop, close]);
+
   return (
     <div
+      ref={bdRef}
       className={`
         h-screen w-screen fixed inset-0 bg-black/60 backdrop-blur
         z-10 flex items-center justify-center ${open ? 'scala-100' : 'scale-0 delay-300'}

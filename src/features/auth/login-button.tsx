@@ -3,7 +3,10 @@ import Modal from '../../components/modal';
 import { useModal } from '../../hooks/usemodal';
 
 export default function LoginButton() {
-  const { isOpen, open, close } = useModal(true);
+  const { isOpen, open, close } = useModal();
+
+  document.body.style.overflowY = isOpen ? 'hidden' : 'auto';
+
   return (
     <>
       <Button
