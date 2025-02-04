@@ -1,5 +1,4 @@
 import Header from './components/header';
-import Modal from './components/modal';
 import PostCard from './features/posts/post-card';
 
 function App() {
@@ -11,7 +10,6 @@ function App() {
         <PostCard />
         <PostCard />
       </div>
-      <Modal />
     </div>
   );
 }

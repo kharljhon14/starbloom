@@ -1,14 +1,31 @@
 import { X } from 'lucide-react';
 import Button from './button';
 
-export default function Modal() {
+interface Props {
+  open: boolean;
+  close: () => void;
+}
+
+export default function Modal({ open, close }: Props) {
   return (
-    <div className="h-screen w-screen fixed inset-0 bg-black/60 backdrop-blur z-10 flex items-center justify-center">
-      <div className="bg-white border pb-4 pt-6 px-3 rounded-md w-full max-h-[620px] mx-4 shadow-black shadow-full overflow-y-scroll relative transition-all duration-300">
+    <div
+      className={`
+        h-screen w-screen fixed inset-0 bg-black/60 backdrop-blur
+        z-10 flex items-center justify-center ${open ? 'scala-100' : 'scale-0 delay-300'}
+        `}
+    >
+      <div
+        className={`
+            bg-white border pb-4 pt-6 px-3 rounded-md w-full max-h-[620px] 
+        mx-4 shadow-black shadow-full overflow-y-scroll relative transition-all duration-300
+        ${open ? 'scale-100' : 'scale-0'}
+        `}
+      >
         <div className="absolute right-4 top-3">
           <Button
             showBackground={false}
             className="w-7 h-7 p-0"
+            onClick={close}
           >
             <X />
           </Button>
