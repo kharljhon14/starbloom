@@ -1,12 +1,29 @@
 import { X } from 'lucide-react';
 import Button from './button';
+import React, { PropsWithChildren } from 'react';
 
-interface Props {
+interface Props extends PropsWithChildren {
   open: boolean;
   close: () => void;
 }
 
-export default function Modal({ open, close }: Props) {
+function ModalHeader({ children }: PropsWithChildren) {
+  return (
+    <div className="border-b pb-2 pt-4">
+      <h1 className=" text-lg">{children}</h1>
+    </div>
+  );
+}
+
+function ModalContent({ children }: PropsWithChildren) {
+  return <div className="my-4">{children}</div>;
+}
+
+function ModalFooter({ children }: PropsWithChildren) {
+  return <div className="border-t pt-2">{children}</div>;
+}
+
+function Modal({ open, close, children }: Props) {
   return (
     <div
       className={`
@@ -17,7 +34,7 @@ export default function Modal({ open, close }: Props) {
       <div
         className={`
             bg-white border pb-4 pt-6 px-3 rounded-md w-full max-h-[620px] 
-        mx-4 shadow-black shadow-full overflow-y-scroll relative transition-all duration-300
+        mx-4 shadow-black shadow-full overflow-y-auto relative transition-all duration-300
         ${open ? 'scale-100' : 'scale-0'}
         `}
       >
@@ -31,25 +48,19 @@ export default function Modal({ open, close }: Props) {
           </Button>
         </div>
 
-        {/* Modal header */}
-        <div className="border-b pb-2 pt-4">
-          <h1 className=" text-lg">This is the Header</h1>
-        </div>
-        {/* Modal Body */}
-        <div className="my-4">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos provident, libero
-            tempore a deserunt quas accusantium fugiat eius veritatis sequi, commodi temporibus
-            voluptatum perferendis eaque, nobis blanditiis reprehenderit nisi optio? Officiis, quia
-            amet praesentium illum dignissimos eos earum harum similique, consequuntur tempore qui
-            accusamus ipsum vero nemo nesciunt neque tenetur? Accusamus tenetur cum eaque, aut
-          </p>
-        </div>
-        {/* Modal Footer */}
-        <div className="border-t pt-2">
-          <Button secondaryColor="danger">Close</Button>
-        </div>
+        {React.Children.map(children, (child) => {
+          if (React.isValidElement<PropsWithChildren>(child)) {
+            return React.cloneElement(child);
+          }
+          return child;
+        })}
       </div>
     </div>
   );
 }
+
+Modal.Header = ModalHeader;
+Modal.Content = ModalContent;
+Modal.Footer = ModalFooter;
+
+export default Modal;

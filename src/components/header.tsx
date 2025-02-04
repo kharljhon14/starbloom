@@ -1,4 +1,4 @@
-import Button from './button';
+import LoginButton from '../features/auth/login-button';
 
 export default function Header() {
   return (
@@ -12,7 +12,7 @@ export default function Header() {
         </a>
       </div>
       <div className="bg-danger border-l flex items-center justify-center gap-3 px-4">
-        <Button size="lg">Log In</Button>
+        <LoginButton />
       </div>
     </header>
   );
