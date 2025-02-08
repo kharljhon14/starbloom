@@ -5,15 +5,20 @@ import { useModal } from '../../hooks/usemodal';
 import LoginForm from './login-form';
 import { SignUpForm } from './signup-form';
 import AuthModalFooter from './auth-modal-footer';
+import ForgotPasswordForm from './forgot-password.form';
+
+export type FormType = 'login' | 'signup' | 'forgot';
 
 export default function LoginButton() {
   const { isOpen, open, close } = useModal();
-  const [isLogin, setIsLogin] = useState(true);
+  const [showFormType, setShowFormType] = useState<FormType>('login');
 
   document.body.style.overflowY = isOpen ? 'hidden' : 'auto';
 
   const reset = () => {
-    setIsLogin(true);
+    setTimeout(() => {
+      setShowFormType('login');
+    }, 300);
   };
 
   return (
@@ -27,13 +32,22 @@ export default function LoginButton() {
       <Modal
         open={isOpen}
         close={() => close(reset)}
+        closeOnBackdrop
       >
-        <Modal.Header>Log in to StarBloom</Modal.Header>
-        <Modal.Content>{isLogin ? <LoginForm /> : <SignUpForm />}</Modal.Content>
+        <Modal.Header>
+          {showFormType === 'login' && 'Sign in to StarBloom'}
+          {showFormType === 'signup' && 'Create your account'}
+          {showFormType === 'forgot' && 'Reset your password'}
+        </Modal.Header>
+        <Modal.Content>
+          {showFormType === 'login' && <LoginForm />}
+          {showFormType === 'signup' && <SignUpForm />}
+          {showFormType === 'forgot' && <ForgotPasswordForm />}
+        </Modal.Content>
         <Modal.Footer>
           <AuthModalFooter
-            isLogin={isLogin}
-            setIslogin={setIsLogin}
+            showFormType={showFormType}
+            setShowFormType={setShowFormType}
           />
         </Modal.Footer>
       </Modal>

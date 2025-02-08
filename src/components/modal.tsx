@@ -49,14 +49,14 @@ function Modal({ open, close, closeOnBackdrop = false, children }: Props) {
       ref={bdRef}
       className={`
         h-screen w-screen fixed inset-0 bg-black/60 backdrop-blur
-        z-10 flex items-center justify-center ${open ? 'scale-100' : 'scale-0 delay-300'}
+        z-10 flex items-center justify-center ${open ? 'scale-100' : 'scale-0  delay-300'}
         `}
     >
       <div
         className={`
             bg-accent border pb-4 pt-6 px-3 rounded-md w-full max-h-[620px] 
         mx-4 shadow-black shadow-full overflow-y-auto relative transition-all duration-300
-        ${open ? 'scale-100' : 'scale-0'}
+        ${open ? 'scale-100' : 'scale-0 opacity-0'}
         `}
       >
         <div className="absolute right-4 top-3">

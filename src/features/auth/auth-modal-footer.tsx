@@ -1,47 +1,58 @@
 import { Dispatch, SetStateAction } from 'react';
 import Button from '../../components/button';
+import { FormType } from './login-button';
 
 interface Props {
-  isLogin: boolean;
-  setIslogin: Dispatch<SetStateAction<boolean>>;
+  showFormType: FormType;
+  setShowFormType: Dispatch<SetStateAction<FormType>>;
 }
 
-export default function AuthModalFooter({ isLogin, setIslogin }: Props) {
+export default function AuthModalFooter({ showFormType, setShowFormType }: Props) {
   return (
-    <>
-      {isLogin ? (
-        <div className="flex gap-3 justify-between p-6">
+    <div className="flex gap-3 justify-between p-6 border-t border-gray-300">
+      {showFormType === 'forgot' ? (
+        <Button
+          secondaryColor="secondary"
+          variant="secondary"
+          onClick={() => setShowFormType('login')}
+        >
+          Back to Login
+        </Button>
+      ) : showFormType === 'signup' ? (
+        <>
           <Button
             secondaryColor="secondary"
             variant="secondary"
-          >
-            Forgot Password
-          </Button>
-          <Button
-            secondaryColor="primary"
-            variant="secondary"
-            onClick={() => setIslogin(false)}
-          >
-            Create Account
-          </Button>
-        </div>
-      ) : (
-        <div className="flex gap-3 justify-between p-6">
-          <Button
-            secondaryColor="secondary"
-            variant="secondary"
+            onClick={() => setShowFormType('forgot')}
           >
             Forgot Password
           </Button>
           <Button
             secondaryColor="danger"
             variant="secondary"
-            onClick={() => setIslogin(true)}
+            onClick={() => setShowFormType('login')}
           >
-            Login in Account
+            Log In Instead
           </Button>
-        </div>
+        </>
+      ) : (
+        <>
+          <Button
+            secondaryColor="secondary"
+            variant="secondary"
+            onClick={() => setShowFormType('forgot')}
+          >
+            Forgot Password
+          </Button>
+          <Button
+            secondaryColor="danger"
+            variant="secondary"
+            onClick={() => setShowFormType('signup')}
+          >
+            Create Account
+          </Button>
+        </>
       )}
-    </>
+    </div>
   );
 }
