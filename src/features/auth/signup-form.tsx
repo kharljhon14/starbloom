@@ -33,14 +33,15 @@ export function SignUpForm() {
           />
         </div>
       </div>
-      <div>
-        <Button
-          size="sm"
-          secondaryColor="success"
-        >
-          Sign Up
-        </Button>
-      </div>
+
+      <Button
+        width="full"
+        size="lg"
+        secondaryColor="success"
+        className="uppercase"
+      >
+        Sign Up
+      </Button>
     </form>
   );
 }
