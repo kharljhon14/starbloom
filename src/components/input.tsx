@@ -32,7 +32,7 @@ export default function Input({ type, id, className, ...props }: Props) {
               variant="secondary"
               className="w-6 h-6 p-0 inset-1"
             >
-              {showPassword ? <EyeOff /> : <Eye />}
+              {showPassword ? <Eye /> : <EyeOff />}
             </Button>
           </div>
         )}
