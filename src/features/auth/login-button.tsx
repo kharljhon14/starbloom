@@ -24,6 +24,22 @@ export default function LoginButton() {
         <Modal.Content>
           <LoginForm />
         </Modal.Content>
+        <Modal.Footer>
+          <div className="flex justify-between p-6">
+            <Button
+              secondaryColor="secondary"
+              variant="secondary"
+            >
+              Forgot Password
+            </Button>
+            <Button
+              secondaryColor="primary"
+              variant="secondary"
+            >
+              Create Account
+            </Button>
+          </div>
+        </Modal.Footer>
       </Modal>
     </>
   );

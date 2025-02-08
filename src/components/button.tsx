@@ -2,9 +2,21 @@ import { cva, VariantProps } from 'class-variance-authority';
 import { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 import { cn } from '../utils/utils';
 
+const widthVariants = cva('', {
+  variants: {
+    width: {
+      default: 'w-fit',
+      full: 'w-full'
+    }
+  },
+  defaultVariants: {
+    width: 'default'
+  }
+});
+
 const buttonVariants = cva(
   `
-    inline-flex items-center justify-center gap-2 whitespace-nowrap relative rounded-md cursor-pointer 
+    inline-flex items-center w-full justify-center gap-2 whitespace-nowrap relative rounded-md cursor-pointer 
     border active:translate-1 transition duration-100 ease-in-out
     `,
   {
@@ -27,7 +39,7 @@ const buttonVariants = cva(
   }
 );
 
-const secondaryColorVariants = cva(`absolute  w-full h-full -bottom-1 -right-1 rounded-md border`, {
+const secondaryColorVariants = cva(`absolute w-full h-full -bottom-1 -right-1 rounded-md border`, {
   variants: {
     secondaryColor: {
       default: 'bg-white',
@@ -51,12 +63,14 @@ const secondaryColorVariants = cva(`absolute  w-full h-full -bottom-1 -right-1 r
 
 interface Props
   extends ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof widthVariants>,
     VariantProps<typeof buttonVariants>,
     VariantProps<typeof secondaryColorVariants>,
     PropsWithChildren {}
 
 export default function Button({
   variant,
+  width,
   size,
   secondaryColor,
   showBackground: show,
@@ -65,7 +79,7 @@ export default function Button({
   ...props
 }: Props) {
   return (
-    <div className="relative">
+    <div className={cn(widthVariants({ width }), 'relative')}>
       <div className={cn(secondaryColorVariants({ secondaryColor, showBackground: show }))}></div>
       <button
         className={cn(buttonVariants({ variant, size, className }))}

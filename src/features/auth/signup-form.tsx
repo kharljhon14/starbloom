@@ -2,7 +2,7 @@ import Button from '../../components/button';
 import Input from '../../components/input';
 import Label from '../../components/label';
 
-export default function LoginForm() {
+export function SignUpForm() {
   return (
     <form autoComplete="off">
       <div className="flex flex-col gap-y-3 mb-5">
@@ -23,16 +23,24 @@ export default function LoginForm() {
             type="password"
           />
         </div>
+        <div>
+          <Label htmlFor="confirm-password">Confirm Password</Label>
+          <Input
+            id="confirm-password"
+            name="confirm-password"
+            placeholder="Confirm Password"
+            type="password"
+          />
+        </div>
       </div>
-
-      <Button
-        width="full"
-        size="lg"
-        secondaryColor="success"
-        className="uppercase w-full"
-      >
-        Log in
-      </Button>
+      <div>
+        <Button
+          size="sm"
+          secondaryColor="success"
+        >
+          Sign Up
+        </Button>
+      </div>
     </form>
   );
 }
