@@ -6,6 +6,24 @@ export function SignUpForm() {
   return (
     <form autoComplete="off">
       <div className="flex flex-col gap-y-3 mb-5">
+        <div className="flex gap-x-3">
+          <div className="w-full">
+            <Label htmlFor="first-name">First name</Label>
+            <Input
+              id="first-name"
+              name="first-name"
+              placeholder="First name"
+            />
+          </div>
+          <div className="w-full">
+            <Label htmlFor="last-name">Last name</Label>
+            <Input
+              id="last-name"
+              name="last-name"
+              placeholder="Last name"
+            />
+          </div>
+        </div>
         <div>
           <Label htmlFor="email">Email</Label>
           <Input
@@ -20,15 +38,6 @@ export function SignUpForm() {
             id="password"
             name="password"
             placeholder="Password"
-            type="password"
-          />
-        </div>
-        <div>
-          <Label htmlFor="confirm-password">Confirm Password</Label>
-          <Input
-            id="confirm-password"
-            name="confirm-password"
-            placeholder="Confirm Password"
             type="password"
           />
         </div>

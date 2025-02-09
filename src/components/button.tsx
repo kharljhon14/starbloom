@@ -39,7 +39,7 @@ const buttonVariants = cva(
   }
 );
 
-const secondaryColorVariants = cva(`absolute w-full h-full -bottom-1 -right-1 rounded-md border`, {
+const secondaryColorVariants = cva(`absolute w-full  -right-1 rounded-md border`, {
   variants: {
     secondaryColor: {
       default: 'bg-white',
@@ -50,6 +50,12 @@ const secondaryColorVariants = cva(`absolute w-full h-full -bottom-1 -right-1 ro
       danger: 'bg-danger',
       success: 'bg-success'
     },
+    size: {
+      default: 'h-10 px-4 py-2 -bottom-1',
+      sm: 'h-9 -bottom-[.27rem]',
+      lg: 'h-11 px-8 -bottom-1',
+      icon: 'h-10 w-10 -bottom-1'
+    },
     showBackground: {
       true: 'block',
       false: 'hidden'
@@ -57,7 +63,8 @@ const secondaryColorVariants = cva(`absolute w-full h-full -bottom-1 -right-1 ro
   },
   defaultVariants: {
     secondaryColor: 'default',
-    showBackground: true
+    showBackground: true,
+    size: 'default'
   }
 });
 
@@ -80,7 +87,9 @@ export default function Button({
 }: Props) {
   return (
     <div className={cn(widthVariants({ width }), 'relative')}>
-      <div className={cn(secondaryColorVariants({ secondaryColor, showBackground: show }))}></div>
+      <div
+        className={cn(secondaryColorVariants({ secondaryColor, size, showBackground: show }))}
+      ></div>
       <button
         className={cn(buttonVariants({ variant, size, className }))}
         {...props}

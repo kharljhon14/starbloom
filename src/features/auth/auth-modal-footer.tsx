@@ -9,10 +9,11 @@ interface Props {
 
 export default function AuthModalFooter({ showFormType, setShowFormType }: Props) {
   return (
-    <div className="flex gap-3 justify-between p-6 border-t border-gray-300">
+    <div className="flex gap-3 justify-evenly py-4 order-t border-gray-300">
       {showFormType === 'forgot' ? (
         <Button
-          className=" uppercase"
+          size="sm"
+          className="uppercase text-sm md:text-base"
           secondaryColor="secondary"
           variant="secondary"
           onClick={() => setShowFormType('login')}
@@ -22,7 +23,8 @@ export default function AuthModalFooter({ showFormType, setShowFormType }: Props
       ) : showFormType === 'signup' ? (
         <>
           <Button
-            className=" uppercase"
+            size="sm"
+            className="uppercase text-sm md:text-base"
             secondaryColor="secondary"
             variant="secondary"
             onClick={() => setShowFormType('forgot')}
@@ -30,7 +32,8 @@ export default function AuthModalFooter({ showFormType, setShowFormType }: Props
             Forgot Password
           </Button>
           <Button
-            className=" uppercase"
+            className="uppercase text-sm md:text-base"
+            size="sm"
             secondaryColor="danger"
             variant="secondary"
             onClick={() => setShowFormType('login')}
@@ -41,7 +44,8 @@ export default function AuthModalFooter({ showFormType, setShowFormType }: Props
       ) : (
         <>
           <Button
-            className=" uppercase"
+            className="uppercase text-sm md:text-base"
+            size="sm"
             secondaryColor="secondary"
             variant="secondary"
             onClick={() => setShowFormType('forgot')}
@@ -49,7 +53,8 @@ export default function AuthModalFooter({ showFormType, setShowFormType }: Props
             Forgot Password
           </Button>
           <Button
-            className=" uppercase"
+            className="uppercase text-sm"
+            size="sm"
             secondaryColor="danger"
             variant="secondary"
             onClick={() => setShowFormType('signup')}
