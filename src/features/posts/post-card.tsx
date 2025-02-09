@@ -2,23 +2,28 @@ import { Heart, Bookmark, MessageCircle } from 'lucide-react';
 import Avatar from '../../components/avatar';
 import Button from '../../components/button';
 import Card from '../../components/card';
+import { localizeDate } from '../../utils/utils';
+import { Post } from '../../types/post';
 
-export default function PostCard() {
+interface Props {
+  post: Post;
+}
+
+export default function PostCard({ post }: Props) {
   return (
     <Card>
       <div className="flex flex-col gap-3">
         <div className="flex items-center gap-2">
-          <Avatar fallback="KC" />
+          <Avatar
+            image={post.avatar}
+            fallback="KC"
+          />
           <div className="flex flex-col">
-            <span className="text-sm">Kharl Cruz</span>
-            <span className="text-xs text-gray-500">Yesterday at 10:40</span>
+            <span className="text-sm">{post.name}</span>
+            <span className="text-xs text-gray-500">{localizeDate(post.createdAt)}</span>
           </div>
         </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, velit impedit
-          commodi nulla totam doloremque dignissimos alias facilis, ut eius quibusdam ab aliquid
-          laboriosam quam itaque! Deserunt sunt magnam quo?
-        </p>
+        <p>{post.content}</p>
         <div className="flex justify-between">
           <div className="flex gap-3">
             <Button
