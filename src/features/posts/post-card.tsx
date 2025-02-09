@@ -38,6 +38,7 @@ export default function PostCard() {
           </div>
 
           <Button
+            className=" uppercase"
             variant="secondary"
             secondaryColor="secondary"
           >

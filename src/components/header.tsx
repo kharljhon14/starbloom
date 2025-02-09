@@ -11,7 +11,7 @@ export default function Header() {
           StarBloom
         </a>
       </div>
-      <div className="bg-danger border-l flex items-center justify-center gap-3 px-4">
+      <div className="bg-danger border-l flex items-center justify-center gap-3 px-4 md:w-52">
         <LoginButton />
       </div>
     </header>

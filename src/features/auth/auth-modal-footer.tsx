@@ -12,6 +12,7 @@ export default function AuthModalFooter({ showFormType, setShowFormType }: Props
     <div className="flex gap-3 justify-between p-6 border-t border-gray-300">
       {showFormType === 'forgot' ? (
         <Button
+          className=" uppercase"
           secondaryColor="secondary"
           variant="secondary"
           onClick={() => setShowFormType('login')}
@@ -21,6 +22,7 @@ export default function AuthModalFooter({ showFormType, setShowFormType }: Props
       ) : showFormType === 'signup' ? (
         <>
           <Button
+            className=" uppercase"
             secondaryColor="secondary"
             variant="secondary"
             onClick={() => setShowFormType('forgot')}
@@ -28,6 +30,7 @@ export default function AuthModalFooter({ showFormType, setShowFormType }: Props
             Forgot Password
           </Button>
           <Button
+            className=" uppercase"
             secondaryColor="danger"
             variant="secondary"
             onClick={() => setShowFormType('login')}
@@ -38,6 +41,7 @@ export default function AuthModalFooter({ showFormType, setShowFormType }: Props
       ) : (
         <>
           <Button
+            className=" uppercase"
             secondaryColor="secondary"
             variant="secondary"
             onClick={() => setShowFormType('forgot')}
@@ -45,6 +49,7 @@ export default function AuthModalFooter({ showFormType, setShowFormType }: Props
             Forgot Password
           </Button>
           <Button
+            className=" uppercase"
             secondaryColor="danger"
             variant="secondary"
             onClick={() => setShowFormType('signup')}
