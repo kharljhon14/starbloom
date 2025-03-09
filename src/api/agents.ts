@@ -1,10 +1,18 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { LoginUserSchemaType } from '../schemas/auth';
 import { AuthToken } from '../types/auth';
+import { getCookie } from '../utils/utils';
 
 const responseBody = <T>(res: AxiosResponse<T>) => res.data;
 
 const baseURL = 'http://localhost:8080/api/v1';
+
+axios.interceptors.request.use((config) => {
+  const token = getCookie('bearer');
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+
+  return config;
+});
 
 axios.interceptors.response.use(
   (response) => response,
