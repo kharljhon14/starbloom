@@ -25,6 +25,13 @@ export function SignUpForm() {
           </div>
         </div>
         <div>
+          <Label htmlFor="username">Username</Label>
+          <Input
+            id="username"
+            placeholder="Username"
+          />
+        </div>
+        <div>
           <Label htmlFor="email">Email</Label>
           <Input
             id="email"

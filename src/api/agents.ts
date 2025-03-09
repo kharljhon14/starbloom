@@ -5,7 +5,7 @@ import { getCookie } from '../utils/utils';
 
 const responseBody = <T>(res: AxiosResponse<T>) => res.data;
 
-const baseURL = 'http://localhost:8080/api/v1';
+axios.defaults.baseURL = 'http://localhost:8080/api/v1';
 
 axios.interceptors.request.use((config) => {
   const token = getCookie('bearer');
@@ -28,7 +28,7 @@ const requests = {
 
 const auth = {
   login: (body: LoginUserSchemaType) =>
-    requests.post<AuthToken, LoginUserSchemaType>(`${baseURL}/login`, body)
+    requests.post<AuthToken, LoginUserSchemaType>('/login', body)
 };
 
 const agent = {
