@@ -16,7 +16,7 @@ const widthVariants = cva('', {
 
 const buttonVariants = cva(
   `
-    inline-flex items-center w-full justify-center gap-2 whitespace-nowrap relative rounded-md cursor-pointer 
+    inline-flex items-center w-full justify-center gap-2 whitespace-nowrap relative rounded-md 
     border active:translate-1 transition duration-100 ease-in-out
     `,
   {
@@ -79,6 +79,7 @@ export default function Button({
   variant,
   width,
   size,
+  disabled,
   secondaryColor,
   showBackground: show,
   children,
@@ -91,7 +92,10 @@ export default function Button({
         className={cn(secondaryColorVariants({ secondaryColor, size, showBackground: show }))}
       ></div>
       <button
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(
+          buttonVariants({ variant, size, className }),
+          `${disabled ? 'cursor-none pointer-events-none' : 'cursor-pointer pointer-events-auto'}`
+        )}
         {...props}
       >
         {children}
