@@ -31,4 +31,4 @@ export const signupUserSchema = z.object({
     .max(60, 'Password must not exceed 60 characters')
 });
 
-export type SignupUserSchema = z.infer<typeof signupUserSchema>;
+export type SignupUserSchemaType = z.infer<typeof signupUserSchema>;

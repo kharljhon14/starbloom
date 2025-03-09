@@ -32,7 +32,6 @@ export default function LoginButton() {
       <Modal
         open={isOpen}
         close={() => close(reset)}
-        closeOnBackdrop
       >
         <Modal.Header>
           {showFormType === 'login' && 'Sign in to StarBloom'}

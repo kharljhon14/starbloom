@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { LoginUserSchemaType } from '../schemas/auth';
-import { AuthToken } from '../types/auth';
+import { LoginUserSchemaType, SignupUserSchemaType } from '../schemas/auth';
+import { AuthToken, NewUser } from '../types/auth';
 import { getCookie } from '../utils/utils';
 
 const responseBody = <T>(res: AxiosResponse<T>) => res.data;
@@ -28,7 +28,9 @@ const requests = {
 
 const auth = {
   login: (body: LoginUserSchemaType) =>
-    requests.post<AuthToken, LoginUserSchemaType>('/login', body)
+    requests.post<AuthToken, LoginUserSchemaType>('/login', body),
+  signup: (body: SignupUserSchemaType) =>
+    requests.post<NewUser, SignupUserSchemaType>('/signup', body)
 };
 
 const agent = {
