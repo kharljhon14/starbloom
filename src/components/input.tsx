@@ -2,11 +2,14 @@ import { InputHTMLAttributes, useState } from 'react';
 import Button from './button';
 import { Eye, EyeOff } from 'lucide-react';
 import { cn } from '../utils/utils';
+import { UseFormRegisterReturn } from 'react-hook-form';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface Props extends InputHTMLAttributes<HTMLInputElement> {}
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
+  register?: UseFormRegisterReturn;
+  error?: string;
+}
 
-export default function Input({ type, id, className, ...props }: Props) {
+export default function Input({ type, id, className, error, register, ...props }: Props) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -21,6 +24,7 @@ export default function Input({ type, id, className, ...props }: Props) {
             className
           )}
           type={showPassword ? 'text' : type}
+          {...register}
           {...props}
         />
         {type === 'password' && (
@@ -37,12 +41,14 @@ export default function Input({ type, id, className, ...props }: Props) {
           </div>
         )}
       </div>
-      <label
-        className="ml-1 mt-1 block"
-        htmlFor={id}
-      >
-        {/* <small className="text-red-500">Please enter a valid email</small> */}
-      </label>
+      {error && (
+        <label
+          className="ml-1 mt-1 block"
+          htmlFor={id}
+        >
+          <small className="text-red-500">{error}</small>
+        </label>
+      )}
     </div>
   );
 }
