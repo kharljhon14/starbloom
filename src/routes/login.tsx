@@ -1,13 +1,21 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 import LoginForm from '../features/auth/login-form';
 import Card from '../components/card';
 import { useState } from 'react';
-import AuthModalFooter from '../features/auth/auth-modal-footer';
+import AuthFormFooter from '../features/auth/auth-form-footer';
 import ForgotPasswordForm from '../features/auth/forgot-password.form';
 import { SignUpForm } from '../features/auth/signup-form';
+import { getCookie } from '../utils/utils';
 
 export const Route = createFileRoute('/login')({
+  beforeLoad: () => {
+    if (getCookie('bearer')) {
+      throw redirect({
+        to: '/'
+      });
+    }
+  },
   component: LoginComponent
 });
 export type FormType = 'login' | 'signup' | 'forgot';
@@ -30,7 +38,7 @@ function LoginComponent() {
           {showFormType === 'forgot' && <ForgotPasswordForm />}
         </div>
         <div>
-          <AuthModalFooter
+          <AuthFormFooter
             showFormType={showFormType}
             setShowFormType={setShowFormType}
           />

@@ -1,13 +1,13 @@
 import { Dispatch, SetStateAction } from 'react';
 import Button from '../../components/button';
-import { FormType } from './login-button';
+import { FormType } from '../../routes/login';
 
 interface Props {
   showFormType: FormType;
   setShowFormType: Dispatch<SetStateAction<FormType>>;
 }
 
-export default function AuthModalFooter({ showFormType, setShowFormType }: Props) {
+export default function AuthFormFooter({ showFormType, setShowFormType }: Props) {
   return (
     <div className="flex gap-3 justify-evenly py-4 order-t border-gray-300">
       {showFormType === 'forgot' ? (

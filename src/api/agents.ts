@@ -31,8 +31,7 @@ const auth = {
     requests.post<AuthToken, LoginUserSchemaType>('/login', body),
   signup: (body: SignupUserSchemaType) =>
     requests.post<User, SignupUserSchemaType>('/signup', body),
-  getUserByToken: (token: { token: string }) =>
-    requests.get<User, { token: string }>(`/users`, token)
+  getUserByToken: () => requests.get<{ user: User }, undefined>(`/validate-token`)
 };
 
 const agent = {

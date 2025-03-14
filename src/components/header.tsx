@@ -1,5 +1,4 @@
 import { Link } from '@tanstack/react-router';
-import LoginButton from '../features/auth/login-button';
 
 export default function Header() {
   return (
@@ -12,9 +11,7 @@ export default function Header() {
           StarBloom
         </Link>
       </div>
-      <div className="bg-danger border-l flex items-center justify-center gap-3 px-4 md:w-52">
-        <LoginButton />
-      </div>
+      <div className="bg-danger border-l flex items-center justify-center gap-3 px-4 md:w-52"></div>
     </header>
   );
 }

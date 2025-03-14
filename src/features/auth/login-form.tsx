@@ -10,10 +10,12 @@ import { AxiosError } from 'axios';
 import Card from '../../components/card';
 import { useState } from 'react';
 import { setCookie } from '../../utils/utils';
+import { useNavigate } from '@tanstack/react-router';
 
 export type ErrorResponse = { error: string };
 
 export default function LoginForm() {
+  const navigate = useNavigate({ from: '/login' });
   const [errorResponse, setErrorResponse] = useState<string | undefined>('');
 
   const {
@@ -30,6 +32,7 @@ export default function LoginForm() {
         data.authentication_token.plain_text,
         data.authentication_token.expired_at
       );
+      navigate({ to: '/' });
     },
 
     onError: (error: unknown) => {
