@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 import { cn } from '../utils/utils';
 import { cva, VariantProps } from 'class-variance-authority';
 
-const cardVariants = cva(`rounded-md border shadow-black shadow-full`, {
+const cardVariants = cva(`rounded-md border shadow-black shadow-full w-full`, {
   variants: {
     color: {
       default: 'bg-white ',

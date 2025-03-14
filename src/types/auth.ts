@@ -5,7 +5,7 @@ export interface AuthToken {
   };
 }
 
-export interface NewUser {
+export interface User {
   id: number;
   username: string;
   email: string;
