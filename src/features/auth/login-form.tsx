@@ -32,6 +32,7 @@ export default function LoginForm() {
         data.authentication_token.plain_text,
         data.authentication_token.expired_at
       );
+
       navigate({ to: '/' });
     },
 

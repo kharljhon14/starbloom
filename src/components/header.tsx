@@ -1,6 +1,10 @@
 import { Link } from '@tanstack/react-router';
+import { useStore } from '@tanstack/react-store';
+import { userStore } from '../stores/user';
 
 export default function Header() {
+  const user = useStore(userStore, (state) => state['user']);
+
   return (
     <header className="border-b h-20 flex justify-between bg-primary">
       <div className="flex items-center px-4">
@@ -11,7 +15,11 @@ export default function Header() {
           StarBloom
         </Link>
       </div>
-      <div className="bg-danger border-l flex items-center justify-center gap-3 px-4 md:w-52"></div>
+      <div className="bg-danger border-l flex items-center justify-center gap-3 px-4 md:w-52">
+        <Link to="/">
+          {user?.first_name} {user?.last_name}
+        </Link>
+      </div>
     </header>
   );
 }
