@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { LoginUserSchemaType, SignupUserSchemaType } from '../schemas/auth';
 import { AuthToken, User } from '../types/auth';
 import { getCookie } from '../utils/utils';
+import { GetPostsResponse } from '../types/post';
 
 const responseBody = <T>(res: AxiosResponse<T>) => res.data;
 
@@ -20,7 +21,7 @@ axios.interceptors.response.use(
 );
 
 const requests = {
-  get: <T, D>(url: string, body?: D) => axios.get(url, { data: body }).then(responseBody<T>),
+  get: <T>(url: string) => axios.get(url).then(responseBody<T>),
   post: <T, D>(url: string, body: D) => axios.post(url, body).then(responseBody<T>),
   patch: <T, D>(url: string, body: D) => axios.patch(url, body).then(responseBody<T>),
   delete: <T>(url: string) => axios.delete(url).then(responseBody<T>)
@@ -31,11 +32,17 @@ const auth = {
     requests.post<AuthToken, LoginUserSchemaType>('/login', body),
   signup: (body: SignupUserSchemaType) =>
     requests.post<User, SignupUserSchemaType>('/signup', body),
-  getUserByToken: () => requests.get<{ user: User }, undefined>(`/validate-token`)
+  getUserByToken: () => requests.get<{ user: User }>(`/validate-token`)
+};
+
+const posts = {
+  getPosts: (id: number, page: number, pageSize: number) =>
+    requests.get<GetPostsResponse>(`/posts?id=${id}&page=${page}&pageSize=${pageSize}`)
 };
 
 const agent = {
-  auth
+  auth,
+  posts
 };
 
 export default agent;

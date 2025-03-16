@@ -4,6 +4,7 @@ import Button from '../../components/button';
 import Card from '../../components/card';
 import { localizeDate } from '../../utils/utils';
 import { Post } from '../../types/post';
+import { Link } from '@tanstack/react-router';
 
 interface Props {
   post: Post;
@@ -19,8 +20,13 @@ export default function PostCard({ post }: Props) {
             fallback="KC"
           />
           <div className="flex flex-col">
-            <span className="text-sm">{post.name}</span>
-            <span className="text-xs text-gray-500">{localizeDate(post.createdAt)}</span>
+            <Link
+              to="/"
+              className="text-sm"
+            >
+              {post.first_name} {post.last_name}
+            </Link>
+            <span className="text-xs text-gray-500">{localizeDate(post.created_at)}</span>
           </div>
         </div>
         <p>{post.content}</p>

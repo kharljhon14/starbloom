@@ -1,7 +1,7 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 import { getCookie } from '../utils/utils';
-import PostCard from '../features/posts/post-card';
-import { createRandomPosts } from '../helpers/helpers';
+
+import PostCardsContainer from '../features/posts/post-cards-container';
 
 export const Route = createFileRoute('/')({
   beforeLoad: () => {
@@ -13,19 +13,11 @@ export const Route = createFileRoute('/')({
   },
   component: RouteComponent
 });
-const posts = createRandomPosts(5);
 
 function RouteComponent() {
   return (
     <div>
-      <div className="flex flex-col gap-6">
-        {posts.map((post) => (
-          <PostCard
-            key={post.userID}
-            post={post}
-          />
-        ))}
-      </div>
+      <PostCardsContainer />
     </div>
   );
 }

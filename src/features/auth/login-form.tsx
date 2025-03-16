@@ -52,6 +52,7 @@ export default function LoginForm() {
 
   const onSubmit: SubmitHandler<LoginUserSchemaType> = (body) => {
     setErrorResponse('');
+
     mutation.mutate(body);
   };
 
