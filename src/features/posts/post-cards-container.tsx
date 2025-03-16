@@ -4,7 +4,10 @@ import PostCard from './post-card';
 import agent from '../../api/agents';
 
 export default function PostCardsContainer() {
-  const query = useQuery({ queryKey: ['posts'], queryFn: () => agent.posts.getPosts(2, 1, 10) });
+  const query = useQuery({
+    queryKey: ['posts'],
+    queryFn: () => agent.posts.getFollowingPosts(2, 1, 10)
+  });
 
   return (
     <div className="flex flex-col gap-6">

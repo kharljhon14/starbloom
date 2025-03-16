@@ -37,7 +37,9 @@ const auth = {
 
 const posts = {
   getPosts: (id: number, page: number, pageSize: number) =>
-    requests.get<GetPostsResponse>(`/posts?id=${id}&page=${page}&pageSize=${pageSize}`)
+    requests.get<GetPostsResponse>(`/posts?id=${id}&page=${page}&pageSize=${pageSize}`),
+  getFollowingPosts: (id: number, page: number, pageSize: number) =>
+    requests.get<GetPostsResponse>(`/posts/following?id=${id}&page=${page}&pageSize=${pageSize}`)
 };
 
 const agent = {
