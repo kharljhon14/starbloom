@@ -6,7 +6,7 @@ import agent from '../../api/agents';
 export default function PostCardsContainer() {
   const query = useQuery({
     queryKey: ['posts'],
-    queryFn: () => agent.posts.getFollowingPosts(2, 1, 10)
+    queryFn: () => agent.posts.getFollowingPosts(1, 1, 10)
   });
 
   return (

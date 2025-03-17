@@ -11,6 +11,7 @@ import Card from '../../components/card';
 import { useState } from 'react';
 import { setCookie } from '../../utils/utils';
 import { useNavigate } from '@tanstack/react-router';
+import { userStore } from '../../stores/user';
 
 export type ErrorResponse = { error: string };
 
@@ -32,6 +33,8 @@ export default function LoginForm() {
         data.authentication_token.plain_text,
         data.authentication_token.expired_at
       );
+
+      userStore.setState((state) => ({ ...state, hasToken: true }));
 
       navigate({ to: '/' });
     },

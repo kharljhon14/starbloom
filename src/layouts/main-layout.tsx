@@ -5,15 +5,19 @@ import agent from '../api/agents';
 
 import { userStore } from '../stores/user';
 import { getCookie } from '../utils/utils';
+import { useStore } from '@tanstack/react-store';
 
 export default function MainLayout({ children }: PropsWithChildren) {
+  const hasToken = useStore(userStore, (state) => state['hasToken']);
   const query = useQuery({
     queryKey: ['token'],
     queryFn: agent.auth.getUserByToken,
-    enabled: !!getCookie('bearer')
+    enabled: !!getCookie('bearer') || hasToken,
+    retry: false
   });
 
   useEffect(() => {
+    console.info('render');
     if (query.isSuccess) {
       userStore.setState((state) => ({ ...state, user: query.data.user }));
     }
