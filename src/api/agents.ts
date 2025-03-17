@@ -2,7 +2,8 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { LoginUserSchemaType, SignupUserSchemaType } from '../schemas/auth';
 import { AuthToken, User } from '../types/auth';
 import { getCookie } from '../utils/utils';
-import { GetPostsResponse } from '../types/post';
+import { CreatePostResponse, GetPostsResponse } from '../types/post';
+import { CreatePostSchemaType } from '../schemas/post';
 
 const responseBody = <T>(res: AxiosResponse<T>) => res.data;
 
@@ -39,7 +40,9 @@ const posts = {
   getPosts: (id: number, page: number, pageSize: number) =>
     requests.get<GetPostsResponse>(`/posts?id=${id}&page=${page}&pageSize=${pageSize}`),
   getFollowingPosts: (id: number, page: number, pageSize: number) =>
-    requests.get<GetPostsResponse>(`/posts/following?id=${id}&page=${page}&pageSize=${pageSize}`)
+    requests.get<GetPostsResponse>(`/posts/following?id=${id}&page=${page}&pageSize=${pageSize}`),
+  createPost: (body: CreatePostSchemaType) =>
+    requests.post<CreatePostResponse, CreatePostSchemaType>('/posts', body)
 };
 
 const agent = {

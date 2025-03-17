@@ -17,7 +17,6 @@ export default function MainLayout({ children }: PropsWithChildren) {
   });
 
   useEffect(() => {
-    console.info('render');
     if (query.isSuccess) {
       userStore.setState((state) => ({ ...state, user: query.data.user }));
     }

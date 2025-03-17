@@ -20,3 +20,13 @@ export interface GetPostsResponse {
   };
   posts: Post[];
 }
+
+export interface CreatePostResponse {
+  post: {
+    id: number;
+    user_id: number;
+    content: string;
+    created_at: string;
+    updted_at: string;
+  };
+}

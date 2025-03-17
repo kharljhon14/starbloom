@@ -3,16 +3,29 @@ import Button from '../../components/button';
 import Textarea from '../../components/textarea';
 import { createPostSchema, CreatePostSchemaType } from '../../schemas/post';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import agent from '../../api/agents';
 
 export default function CreatePostForm() {
+  const queryClient = useQueryClient();
+
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm<CreatePostSchemaType>({ resolver: zodResolver(createPostSchema) });
 
+  const mutation = useMutation({
+    mutationKey: ['posts'],
+    mutationFn: agent.posts.createPost,
+    onSuccess: (data) => {
+      console.log(data.post);
+      return queryClient.invalidateQueries({ queryKey: ['posts'] });
+    }
+  });
+
   const onSubmit: SubmitHandler<CreatePostSchemaType> = (value) => {
-    console.info(value);
+    mutation.mutate(value);
   };
 
   return (
