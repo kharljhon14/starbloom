@@ -26,7 +26,7 @@ export default function LoginForm() {
 
   const mutation = useMutation({
     mutationFn: agent.auth.login,
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       setCookie(
         'bearer',
         data.authentication_token.plain_text,
