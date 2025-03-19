@@ -11,6 +11,7 @@ export default function CreatePostForm() {
 
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors }
   } = useForm<CreatePostSchemaType>({ resolver: zodResolver(createPostSchema) });
@@ -18,8 +19,8 @@ export default function CreatePostForm() {
   const mutation = useMutation({
     mutationKey: ['posts'],
     mutationFn: agent.posts.createPost,
-    onSuccess: (data) => {
-      console.log(data.post);
+    onSuccess: () => {
+      reset();
       return queryClient.invalidateQueries({ queryKey: ['posts'] });
     }
   });

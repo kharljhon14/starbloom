@@ -30,6 +30,18 @@ export default function PostCard({ post }: Props) {
           </div>
         </div>
         <p>{post.content}</p>
+        <div className="flex justify-between border-b pb-2 text-gray-500">
+          <div className="flex items-center gap-1">
+            <Heart
+              className="text-red-500"
+              size={16}
+            />
+            <span>10</span>
+          </div>
+          <div>
+            <button className="hover:underline cursor-pointer">10 comments</button>
+          </div>
+        </div>
         <div className="flex justify-between">
           <div className="flex gap-3">
             <Button
