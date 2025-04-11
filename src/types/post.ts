@@ -8,6 +8,8 @@ export interface Post {
   avatar: string;
   created_at: string;
   updted_at: string;
+  like_count: number;
+  liked_by_user: boolean;
 }
 
 export interface GetPostsResponse {

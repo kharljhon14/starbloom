@@ -2,11 +2,15 @@ import { useQuery } from '@tanstack/react-query';
 
 import PostCard from './post-card';
 import agent from '../../api/agents';
+import { useStore } from '@tanstack/react-store';
+import { userStore } from '../../stores/user';
 
 export default function PostCardsContainer() {
+  const user = useStore(userStore, (state) => state.user);
+
   const query = useQuery({
     queryKey: ['posts'],
-    queryFn: () => agent.posts.getFollowingPosts(1, 1, 10)
+    queryFn: () => agent.posts.getFollowingPosts(user?.id || 0, 1, 10)
   });
 
   return (

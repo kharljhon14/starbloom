@@ -45,9 +45,15 @@ const posts = {
     requests.post<CreatePostResponse, CreatePostSchemaType>('/posts', body)
 };
 
+const likes = {
+  likePost: (id: number) => requests.post('/like', { post_id: id }),
+  unlikePost: (id: number) => requests.post('/unlike', { post_id: id })
+};
+
 const agent = {
   auth,
-  posts
+  posts,
+  likes
 };
 
 export default agent;

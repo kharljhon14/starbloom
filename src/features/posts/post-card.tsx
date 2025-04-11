@@ -1,16 +1,45 @@
-import { Heart, Bookmark, MessageCircle } from 'lucide-react';
+import { Bookmark, MessageCircle } from 'lucide-react';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import Avatar from '../../components/avatar';
 import Button from '../../components/button';
 import Card from '../../components/card';
 import { localizeDate } from '../../utils/utils';
 import { Post } from '../../types/post';
 import { Link } from '@tanstack/react-router';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import agent from '../../api/agents';
 
 interface Props {
   post: Post;
 }
 
 export default function PostCard({ post }: Props) {
+  const queryClient = useQueryClient();
+
+  const likeMutation = useMutation({
+    mutationKey: ['posts'],
+    mutationFn: agent.likes.likePost,
+    onSuccess: () => {
+      return queryClient.invalidateQueries({ queryKey: ['posts'] });
+    }
+  });
+
+  const unlikeMutation = useMutation({
+    mutationKey: ['posts'],
+    mutationFn: agent.likes.unlikePost,
+    onSuccess: () => {
+      return queryClient.invalidateQueries({ queryKey: ['posts'] });
+    }
+  });
+
+  const likeButtonHandler = () => {
+    if (post.liked_by_user) {
+      unlikeMutation.mutate(post.id);
+    } else {
+      likeMutation.mutate(post.id);
+    }
+  };
+
   return (
     <Card>
       <div className="flex flex-col gap-3">
@@ -30,14 +59,7 @@ export default function PostCard({ post }: Props) {
           </div>
         </div>
         <p>{post.content}</p>
-        <div className="flex justify-between border-b pb-2 text-gray-500">
-          <div className="flex items-center gap-1">
-            <Heart
-              className="text-red-500"
-              size={16}
-            />
-            <span>10</span>
-          </div>
+        <div className="flex justify-end border-b pb-2 text-gray-500">
           <div>
             <button className="hover:underline cursor-pointer">10 comments</button>
           </div>
@@ -45,11 +67,22 @@ export default function PostCard({ post }: Props) {
         <div className="flex justify-between">
           <div className="flex gap-3">
             <Button
+              className="relative"
               variant="secondary"
               secondaryColor="danger"
               size="icon"
+              onClick={likeButtonHandler}
             >
-              <Heart className="text-red-500" />
+              {post.liked_by_user ? (
+                <FaHeart className="text-red-500 text-xl" />
+              ) : (
+                <FaRegHeart className="text-red-500 text-xl" />
+              )}
+              {post.like_count > 0 && (
+                <span className="absolute -right-2 -top-2 h-5 w-5 text-xs flex items-center justify-center text-white bg-red-400  rounded-full">
+                  {post.like_count}
+                </span>
+              )}
             </Button>
             <Button
               variant="secondary"
