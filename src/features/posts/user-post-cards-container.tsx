@@ -2,25 +2,27 @@ import { useQuery } from '@tanstack/react-query';
 
 import PostCard from './post-card';
 import agent from '../../api/agents';
-import { useStore } from '@tanstack/react-store';
-import { userStore } from '../../stores/user';
+import { Route } from '../../routes/users.$id';
 
 export default function UserPostCardsContainer() {
-  const user = useStore(userStore, (state) => state.user);
+  const { id } = Route.useParams();
+  console.log(id);
 
   const query = useQuery({
-    queryKey: ['posts'],
-    queryFn: () => agent.posts.getPosts(user?.id || 0, 1, 10)
+    queryKey: ['posts', id],
+    queryFn: () => agent.posts.getPosts(id, 1, 10)
   });
 
   return (
-    <div className="flex flex-col gap-6">
-      {query.data?.posts.map((post) => (
-        <PostCard
-          key={post.id}
-          post={post}
-        />
-      ))}
+    <div>
+      <div className="flex flex-col gap-6">
+        {query.data?.posts.map((post) => (
+          <PostCard
+            key={post.id}
+            post={post}
+          />
+        ))}
+      </div>
     </div>
   );
 }

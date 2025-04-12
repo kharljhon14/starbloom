@@ -16,7 +16,7 @@ export default function Header() {
         </Link>
       </div>
       <div className="bg-danger border-l flex items-center justify-center gap-3 px-4 md:w-52">
-        <Link to="/">
+        <Link to={`/users/${user?.id}`}>
           {user?.first_name} {user?.last_name}
         </Link>
       </div>

@@ -3,7 +3,7 @@ import Avatar from '../components/avatar';
 import CreatePostForm from '../features/posts/create-post-form';
 import UserPostCardsContainer from '../features/posts/user-post-cards-container';
 
-export const Route = createFileRoute('/users/$username')({
+export const Route = createFileRoute('/users/$id')({
   component: RouteComponent
 });
 

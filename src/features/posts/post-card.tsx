@@ -50,7 +50,7 @@ export default function PostCard({ post }: Props) {
           />
           <div className="flex flex-col">
             <Link
-              to="/"
+              to={`/users/${post.user_id}`}
               className="text-sm"
             >
               {post.first_name} {post.last_name}
