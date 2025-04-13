@@ -1,4 +1,4 @@
-import { Bookmark, MessageCircle } from 'lucide-react';
+import { Bookmark } from 'lucide-react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import Avatar from '../../components/avatar';
 import Button from '../../components/button';
@@ -8,6 +8,7 @@ import { Post } from '../../types/post';
 import { Link } from '@tanstack/react-router';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import agent from '../../api/agents';
+import CommentsModal from './comments-modal';
 
 interface Props {
   post: Post;
@@ -79,7 +80,7 @@ export default function PostCard({ post }: Props) {
                 <FaRegHeart className="text-red-500 text-xl" />
               )}
               {post.like_count > 0 && (
-                <span className="absolute -right-2 -top-2 h-5 w-5 text-xs flex items-center justify-center text-white bg-red-400  rounded-full">
+                <span className="absolute -right-3 -top-3 h-6 w-6 text-xs flex items-center justify-center text-white bg-red-400  rounded-full">
                   {post.like_count}
                 </span>
               )}
@@ -93,14 +94,7 @@ export default function PostCard({ post }: Props) {
             </Button>
           </div>
 
-          <Button
-            className=" uppercase"
-            variant="secondary"
-            secondaryColor="secondary"
-          >
-            <MessageCircle className="text-purple-500" />
-            Comments
-          </Button>
+          <CommentsModal post={post} />
         </div>
       </div>
     </Card>

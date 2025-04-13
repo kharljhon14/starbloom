@@ -21,7 +21,7 @@ export default function Avatar({ className, image, fallback }: Props) {
           alt="avatar image"
         />
       ) : (
-        <div className="flex items-center justify-center w-full h-full">
+        <div className="flex items-center justify-center w-full h-full bg-white">
           <span className="block text-sm font-semibold">{fallback}</span>
         </div>
       )}
