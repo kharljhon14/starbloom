@@ -119,7 +119,9 @@ export default function CommentsModal({ post }: Props) {
         </Modal.Content>
 
         <Modal.Footer>
-          <CommentForm postId={post.id} />
+          <div>
+            <CommentForm postId={post.id} />
+          </div>
         </Modal.Footer>
       </Modal>
     </>

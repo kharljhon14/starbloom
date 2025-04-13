@@ -54,7 +54,7 @@ function Modal({ open, close, closeOnBackdrop = false, children }: Props) {
     >
       <div
         className={`
-            bg-accent border pb-4 pt-6 px-3 rounded-md w-full max-h-[620px]
+            bg-accent border pb-4 pt-6 px-3 rounded-md w-full 
         mx-4 shadow-black shadow-full overflow-y-hidden relative transition-all duration-300 max-w-xl
         ${open ? 'scale-100' : 'scale-0 opacity-0'}
         `}

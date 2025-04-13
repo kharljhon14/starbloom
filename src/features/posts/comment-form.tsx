@@ -1,6 +1,5 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Avatar from '../../components/avatar';
-import Input from '../../components/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { commentSchema, CommentSchemaType } from '../../schemas/comment';
 import Button from '../../components/button';
@@ -11,6 +10,7 @@ import { AddCommentRequest } from '../../types/comment';
 import { useStore } from '@tanstack/react-store';
 import { userStore } from '../../stores/user';
 import { getInitials } from '../../utils/utils';
+import Textarea from '../../components/textarea';
 
 interface Props {
   postId: number;
@@ -51,19 +51,19 @@ export default function CommentForm({ postId }: Props) {
       autoComplete="off"
     >
       <div className="flex items-center gap-x-2">
-        <div>
+        <div className=" self-start">
           <Avatar fallback={getInitials(user?.first_name, user?.last_name)} />
         </div>
         <div className="w-full">
-          <Input
+          <Textarea
             id="comment"
-            className="h-10"
+            className="h-24 resize-none"
             register={register('comment')}
             placeholder={`Comment as ${user?.first_name}`}
             error={errors.comment?.message}
           />
         </div>
-        <div>
+        <div className="">
           <Button size="icon">
             <IoMdSend size={22} />
           </Button>
