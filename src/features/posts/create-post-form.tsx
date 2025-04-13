@@ -37,6 +37,7 @@ export default function CreatePostForm() {
     >
       <Textarea
         id="content"
+        className=""
         register={register('content')}
         placeholder="What's on your mind?"
         error={errors.content?.message}
