@@ -4,6 +4,7 @@ import { AuthToken, User } from '../types/auth';
 import { getCookie } from '../utils/utils';
 import { CreatePostResponse, GetPostsResponse } from '../types/post';
 import { CreatePostSchemaType } from '../schemas/post';
+import { AddCommentRequest, GetCommentsResoponse } from '../types/comment';
 
 const responseBody = <T>(res: AxiosResponse<T>) => res.data;
 
@@ -50,10 +51,16 @@ const likes = {
   unlikePost: (id: number) => requests.post('/unlike', { post_id: id })
 };
 
+const comments = {
+  addComment: (body: AddCommentRequest) => requests.post('/comments', body),
+  getComments: (postId: number) => requests.get<GetCommentsResoponse>(`/comments?postID=${postId}`)
+};
+
 const agent = {
   auth,
   posts,
-  likes
+  likes,
+  comments
 };
 
 export default agent;

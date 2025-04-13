@@ -14,6 +14,18 @@ export function localizeDate(date: string): string {
   });
 }
 
+export function getInitials(firstName?: string, lastName?: string): string {
+  if (!firstName || !lastName) return '';
+
+  const fArr = firstName.split(' ');
+  const lArr = lastName.split(' ');
+
+  const firstChar = fArr[0].split('');
+  const lastNameChar = lastName[lArr.length - 1].split('');
+
+  return `${firstChar[0]}${lastNameChar[0]}`;
+}
+
 export function setCookie(name: string, value: string, expires: Date) {
   const expiry = new Date(expires).toUTCString();
   document.cookie = name + '=' + value + `; expires=${expiry}` + '; path=/';

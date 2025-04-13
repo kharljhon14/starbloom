@@ -17,7 +17,7 @@ function ModalHeader({ children }: PropsWithChildren) {
 }
 
 function ModalContent({ children }: PropsWithChildren) {
-  return <div className="my-4">{children}</div>;
+  return <div className="my-4 overflow-y-auto min-h-[12rem] max-h-[30rem] ">{children}</div>;
 }
 
 function ModalFooter({ children }: PropsWithChildren) {
@@ -54,8 +54,8 @@ function Modal({ open, close, closeOnBackdrop = false, children }: Props) {
     >
       <div
         className={`
-            bg-accent border pb-4 pt-6 px-3 rounded-md w-full max-h-[620px] 
-        mx-4 shadow-black shadow-full overflow-y-auto relative transition-all duration-300 max-w-xl
+            bg-accent border pb-4 pt-6 px-3 rounded-md w-full max-h-[620px]
+        mx-4 shadow-black shadow-full overflow-y-hidden relative transition-all duration-300 max-w-xl
         ${open ? 'scale-100' : 'scale-0 opacity-0'}
         `}
       >

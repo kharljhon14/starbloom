@@ -3,7 +3,7 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import Avatar from '../../components/avatar';
 import Button from '../../components/button';
 import Card from '../../components/card';
-import { localizeDate } from '../../utils/utils';
+import { getInitials, localizeDate } from '../../utils/utils';
 import { Post } from '../../types/post';
 import { Link } from '@tanstack/react-router';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -47,7 +47,7 @@ export default function PostCard({ post }: Props) {
         <div className="flex items-center gap-2">
           <Avatar
             image={post.avatar}
-            fallback="KC"
+            fallback={getInitials(post.first_name, post.last_name)}
           />
           <div className="flex flex-col">
             <Link

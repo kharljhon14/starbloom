@@ -1,29 +1,65 @@
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import Avatar from '../../components/avatar';
 import Input from '../../components/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { commentSchema, CommentSchemaType } from '../../schemas/comment';
 import Button from '../../components/button';
 import { IoMdSend } from 'react-icons/io';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import agent from '../../api/agents';
+import { AddCommentRequest } from '../../types/comment';
+import { useStore } from '@tanstack/react-store';
+import { userStore } from '../../stores/user';
+import { getInitials } from '../../utils/utils';
 
-export default function CommentForm() {
+interface Props {
+  postId: number;
+}
+
+export default function CommentForm({ postId }: Props) {
+  const queryClient = useQueryClient();
+  const user = useStore(userStore, (state) => state.user);
+
   const {
     register,
+    handleSubmit,
+    reset,
     formState: { errors }
   } = useForm<CommentSchemaType>({ resolver: zodResolver(commentSchema) });
 
+  const mutation = useMutation({
+    mutationKey: ['comments'],
+    mutationFn: agent.comments.addComment,
+    onSuccess: () => {
+      reset();
+      queryClient.invalidateQueries({ queryKey: ['comments'] });
+    }
+  });
+
+  const onSubmit: SubmitHandler<CommentSchemaType> = ({ comment }) => {
+    const body: AddCommentRequest = {
+      post_id: postId,
+      comment
+    };
+
+    mutation.mutate(body);
+  };
+
   return (
-    <form autoComplete="off">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      autoComplete="off"
+    >
       <div className="flex items-center gap-x-2">
         <div>
-          <Avatar fallback={'KC'} />
+          <Avatar fallback={getInitials(user?.first_name, user?.last_name)} />
         </div>
         <div className="w-full">
           <Input
             id="comment"
             className="h-10"
             register={register('comment')}
-            placeholder="Comment as Karl"
+            placeholder={`Comment as ${user?.first_name}`}
             error={errors.comment?.message}
           />
         </div>

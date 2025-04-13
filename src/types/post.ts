@@ -1,3 +1,5 @@
+import { Meta } from './meta';
+
 export interface Post {
   id: number;
   user_id: number;
@@ -12,14 +14,7 @@ export interface Post {
   liked_by_user: boolean;
 }
 
-export interface GetPostsResponse {
-  _metadata: {
-    current_page: number;
-    page_size: number;
-    first_page: number;
-    last_page: number;
-    total_records: number;
-  };
+export interface GetPostsResponse extends Meta {
   posts: Post[];
 }
 
