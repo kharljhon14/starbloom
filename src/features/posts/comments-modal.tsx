@@ -1,4 +1,4 @@
-import { Bookmark, MessageCircle } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 import Button from '../../components/button';
 import Modal from '../../components/modal';
 import { useModal } from '../../hooks/usemodal';
@@ -70,7 +70,7 @@ export default function CommentsModal({ post, likeButtonHandler }: Props) {
                 <div>
                   <button className="hover:underline cursor-pointer">
                     {query.data?._metadata.total_records} comment
-                    {query.data?._metadata.total_records || 0 > 1 ? 's' : ''}
+                    {query.data._metadata.total_records > 1 ? 's' : ''}
                   </button>
                 </div>
               )}
@@ -95,13 +95,13 @@ export default function CommentsModal({ post, likeButtonHandler }: Props) {
                     </span>
                   )}
                 </Button>
-                <Button
+                {/* <Button
                   variant="secondary"
                   secondaryColor="accent"
                   size="icon"
                 >
                   <Bookmark className="text-yellow-500" />
-                </Button>
+                </Button> */}
               </div>
             </div>
           </div>

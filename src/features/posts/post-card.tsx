@@ -1,4 +1,3 @@
-import { Bookmark } from 'lucide-react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import Avatar from '../../components/avatar';
 import Button from '../../components/button';
@@ -83,13 +82,13 @@ export default function PostCard({ post }: Props) {
                 </span>
               )}
             </Button>
-            <Button
+            {/* <Button
               variant="secondary"
               secondaryColor="accent"
               size="icon"
             >
               <Bookmark className="text-yellow-500" />
-            </Button>
+            </Button> */}
           </div>
 
           <CommentsModal
