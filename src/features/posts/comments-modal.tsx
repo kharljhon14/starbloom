@@ -51,7 +51,13 @@ export default function CommentsModal({ post, likeButtonHandler }: Props) {
       >
         <MessageCircle className="text-purple-500" />
         Comments
+        {post.comment_count > 0 && (
+          <span className="absolute -right-3 -top-3 h-6 w-6 text-xs flex items-center justify-center text-white bg-gray-500  rounded-full">
+            {post.comment_count}
+          </span>
+        )}
       </Button>
+
       <Modal
         open={isOpen}
         close={closeModalHandler}

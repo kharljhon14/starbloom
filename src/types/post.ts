@@ -12,6 +12,7 @@ export interface Post {
   updted_at: string;
   like_count: number;
   liked_by_user: boolean;
+  comment_count: number;
 }
 
 export interface GetPostsResponse extends Meta {

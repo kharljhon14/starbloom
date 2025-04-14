@@ -44,6 +44,9 @@ function Modal({ open, close, closeOnBackdrop = false, children }: Props) {
     };
   }, [closeOnBackdrop, close]);
 
+  if (!open) return null;
+
+  // TODO: Handle unmounting with animation
   return (
     <div
       ref={bdRef}

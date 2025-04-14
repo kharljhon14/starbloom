@@ -6,7 +6,6 @@ import { Route } from '../../routes/users.$id';
 
 export default function UserPostCardsContainer() {
   const { id } = Route.useParams();
-  console.log(id);
 
   const query = useQuery({
     queryKey: ['posts', id],

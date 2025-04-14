@@ -32,7 +32,7 @@ export default function CommentForm({ postId }: Props) {
     mutationFn: agent.comments.addComment,
     onSuccess: () => {
       reset();
-      queryClient.invalidateQueries({ queryKey: ['comments'] });
+      queryClient.invalidateQueries({ queryKey: ['comments', postId] });
     }
   });
 

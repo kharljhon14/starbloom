@@ -60,11 +60,9 @@ export default function PostCard({ post }: Props) {
           </div>
         </div>
         <p>{post.content}</p>
-        <div className="flex justify-end border-b pb-2 text-gray-500">
-          <div>
-            <button className="hover:underline cursor-pointer">10 comments</button>
-          </div>
-        </div>
+
+        <hr />
+
         <div className="flex justify-between">
           <div className="flex gap-3">
             <Button
