@@ -5,10 +5,11 @@ export function useModal(value: boolean = false) {
 
   const close = (...callbacks: (() => void)[]) => {
     setIsOpen(false);
+    document.body.classList.remove('overflow-hidden');
+
     callbacks.forEach((cb) => {
       if (cb) cb();
     });
-    document.body.classList.remove('overflow-hidden');
   };
 
   const open = () => {

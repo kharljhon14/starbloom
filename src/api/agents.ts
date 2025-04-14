@@ -53,7 +53,8 @@ const likes = {
 
 const comments = {
   addComment: (body: AddCommentRequest) => requests.post('/comments', body),
-  getComments: (postId: number) => requests.get<GetCommentsResoponse>(`/comments?postID=${postId}`)
+  getComments: (postId: number) =>
+    requests.get<GetCommentsResoponse>(`/comments?postID=${postId}&sort=ASC`)
 };
 
 const agent = {

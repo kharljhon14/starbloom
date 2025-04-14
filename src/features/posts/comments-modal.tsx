@@ -11,7 +11,6 @@ import CommentForm from './comment-form';
 import { useQuery } from '@tanstack/react-query';
 import agent from '../../api/agents';
 import Comment from './comment';
-import { useState } from 'react';
 
 interface Props {
   post: Post;
@@ -21,46 +20,31 @@ interface Props {
 export default function CommentsModal({ post, likeButtonHandler }: Props) {
   const { isOpen, open, close } = useModal(false);
 
-  // State for manually fetching comments
-  const [enabled, setEnabled] = useState(false);
-
   const query = useQuery({
     queryKey: ['comments', post.id],
-    queryFn: () => agent.comments.getComments(post.id),
-    enabled
+    queryFn: () => agent.comments.getComments(post.id)
   });
-
-  const commentsButtonHandler = () => {
-    open();
-    setEnabled(true);
-  };
-
-  const closeModalHandler = () => {
-    close(() => {
-      setEnabled(false);
-    });
-  };
 
   return (
     <>
       <Button
-        onClick={commentsButtonHandler}
+        onClick={open}
         className=" uppercase"
         variant="secondary"
         secondaryColor="secondary"
       >
         <MessageCircle className="text-purple-500" />
         Comments
-        {post.comment_count > 0 && (
+        {query.data?._metadata.total_records && query.data?._metadata.total_records > 0 && (
           <span className="absolute -right-3 -top-3 h-6 w-6 text-xs flex items-center justify-center text-white bg-gray-500  rounded-full">
-            {post.comment_count}
+            {query.data._metadata.total_records}
           </span>
         )}
       </Button>
 
       <Modal
         open={isOpen}
-        close={closeModalHandler}
+        close={close}
         closeOnBackdrop
       >
         <Modal.Content>
@@ -82,9 +66,14 @@ export default function CommentsModal({ post, likeButtonHandler }: Props) {
             </div>
             <p>{post.content}</p>
             <div className="flex justify-end border-b pb-2 text-gray-500">
-              <div>
-                <button className="hover:underline cursor-pointer">10 comments</button>
-              </div>
+              {query.data?._metadata.total_records && query.data._metadata.total_records > 0 && (
+                <div>
+                  <button className="hover:underline cursor-pointer">
+                    {query.data?._metadata.total_records} comment
+                    {query.data?._metadata.total_records || 0 > 1 ? 's' : ''}
+                  </button>
+                </div>
+              )}
             </div>
             <div className="flex justify-between">
               <div className="flex gap-3">

@@ -66,7 +66,9 @@ function Modal({ open, close, closeOnBackdrop = false, children }: Props) {
           <Button
             showBackground={false}
             className="w-7 h-7 p-0"
-            onClick={close}
+            onClick={() => {
+              close();
+            }}
           >
             <X />
           </Button>
