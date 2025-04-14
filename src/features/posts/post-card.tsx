@@ -94,7 +94,10 @@ export default function PostCard({ post }: Props) {
             </Button>
           </div>
 
-          <CommentsModal post={post} />
+          <CommentsModal
+            post={post}
+            likeButtonHandler={likeButtonHandler}
+          />
         </div>
       </div>
     </Card>

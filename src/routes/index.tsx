@@ -1,9 +1,11 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
-import { getCookie } from '../utils/utils';
+import { getCookie, getInitials } from '../utils/utils';
 
 import PostCardsContainer from '../features/posts/post-cards-container';
 import CreatePostForm from '../features/posts/create-post-form';
 import Avatar from '../components/avatar';
+import { userStore } from '../stores/user';
+import { useStore } from '@tanstack/react-store';
 
 export const Route = createFileRoute('/')({
   beforeLoad: () => {
@@ -17,11 +19,13 @@ export const Route = createFileRoute('/')({
 });
 
 function RouteComponent() {
+  const user = useStore(userStore, (state) => state.user);
+
   return (
     <div className="bg-white p-8 rounded-2xl">
       <div className="flex w-full gap-2">
         <div>
-          <Avatar fallback="KC" />
+          <Avatar fallback={getInitials(user?.first_name, user?.last_name)} />
         </div>
         <CreatePostForm />
       </div>

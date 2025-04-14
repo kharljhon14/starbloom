@@ -8,11 +8,17 @@ export function useModal(value: boolean = false) {
     callbacks.forEach((cb) => {
       if (cb) cb();
     });
+    document.body.classList.remove('overflow-hidden');
+  };
+
+  const open = () => {
+    setIsOpen(true);
+    document.body.classList.add('overflow-hidden');
   };
 
   return {
     isOpen,
-    open: () => setIsOpen(true),
+    open,
     close
   };
 }

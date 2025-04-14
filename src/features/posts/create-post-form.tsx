@@ -5,9 +5,12 @@ import { createPostSchema, CreatePostSchemaType } from '../../schemas/post';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import agent from '../../api/agents';
+import { useStore } from '@tanstack/react-store';
+import { userStore } from '../../stores/user';
 
 export default function CreatePostForm() {
   const queryClient = useQueryClient();
+  const user = useStore(userStore, (state) => state.user);
 
   const {
     register,
@@ -39,7 +42,7 @@ export default function CreatePostForm() {
         id="content"
         className="h-36"
         register={register('content')}
-        placeholder="What's on your mind?"
+        placeholder={`What's on your mind, ${user?.first_name}?`}
         error={errors.content?.message}
       />
       <Button

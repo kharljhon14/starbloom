@@ -15,9 +15,10 @@ import { useState } from 'react';
 
 interface Props {
   post: Post;
+  likeButtonHandler: () => void;
 }
 
-export default function CommentsModal({ post }: Props) {
+export default function CommentsModal({ post, likeButtonHandler }: Props) {
   const { isOpen, open, close } = useModal(false);
 
   // State for manually fetching comments
@@ -82,6 +83,7 @@ export default function CommentsModal({ post }: Props) {
             <div className="flex justify-between">
               <div className="flex gap-3">
                 <Button
+                  onClick={likeButtonHandler}
                   className="relative"
                   variant="secondary"
                   secondaryColor="danger"
