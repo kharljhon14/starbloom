@@ -47,6 +47,7 @@ export default function CommentsModal({ post, likeButtonHandler }: Props) {
         close={close}
         closeOnBackdrop
       >
+        <Modal.Header>{post.first_name}'s post</Modal.Header>
         <Modal.Content>
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-2">
